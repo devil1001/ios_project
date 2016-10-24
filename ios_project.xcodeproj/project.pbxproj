@@ -86,6 +86,7 @@
 		18B527E31DBBFF3B00A3F650 /* ios_project */ = {
 			isa = PBXGroup;
 			children = (
+				18D2773A1DBE78160024E41F /* images */,
 				1888D3BD1DBE53580002D3B3 /* vk */,
 				18B527FB1DBBFF4500A3F650 /* models */,
 				18B527E71DBBFF3B00A3F650 /* AppDelegate.h */,
@@ -118,6 +119,13 @@
 				18B528001DBC199800A3F650 /* loginModel.m */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		18D2773A1DBE78160024E41F /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

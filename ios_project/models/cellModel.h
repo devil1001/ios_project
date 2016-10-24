@@ -11,8 +11,8 @@
 @interface cellModel : NSObject
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imageName;
-//@property (strong, nonatomic) NSString *messege;
+@property (strong, nonatomic) NSString *messege;
 
-- (instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName ;
+- (instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName messege:(NSString *)messege;
 
 @end

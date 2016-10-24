@@ -12,7 +12,8 @@
 @interface vkTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
-@property (weak, nonatomic) IBOutlet UILabel *cellLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cellName;
+@property (weak, nonatomic) IBOutlet UILabel *cellMessege;
 
 @end
 
@@ -20,8 +21,8 @@
 
 - (void)fillCellWithModel:(cellModel *)model {
     self.cellImageView.image = [UIImage imageNamed:model.imageName];
-    self.cellLabel.text = model.name;
-    
+    self.cellName.text = model.name;
+    self.cellMessege.text = model.messege;
     [self layoutIfNeeded];
     self.cellImageView.layer.masksToBounds = YES;
     self.cellImageView.layer.cornerRadius = self.cellImageView.frame.size.width / 2;//25.f;

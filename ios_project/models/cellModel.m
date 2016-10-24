@@ -10,11 +10,11 @@
 
 @implementation cellModel
 
--(instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName  {
+-(instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName  messege:(NSString *)messege {
     if( self = [super init]){
         _name = name;
         _imageName = imageName;
-     //   _messege = messege;
+        _messege = messege;
     }
     return self;
 }

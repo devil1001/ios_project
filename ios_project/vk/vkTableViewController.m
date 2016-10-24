@@ -7,15 +7,18 @@
 //
 
 #import "vkTableViewController.h"
+#import "vkTableViewCell.h"
+#import "cellModel.h"
 
 @interface vkTableViewController ()
 {
     NSMutableArray *_modelArray;
 }
-
 @end
 
 @implementation vkTableViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,26 +40,37 @@
 
 - (void) setupModel{
     _modelArray = [[NSMutableArray alloc] init];
-    [_modelArray addObject:[NSString stringWithFormat:@"Messege"]];
+    for (int i = 0; i<20; i++) {
+        cellModel *model = [[cellModel alloc] initWithName:[NSString stringWithFormat:@"Ivan Ivanov"] imageName:@"avat.png" messege:[NSString stringWithFormat:@"messege"]];
+        [_modelArray addObject:model];
+    }
+    
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+/* - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
-}
+} */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _modelArray.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80.f;
+}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIndificator" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    cell.textLabel.text = _modelArray[indexPath.row];
-    
+    vkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIndeficator" forIndexPath:indexPath];
+    cellModel *model;
+    if ([_modelArray[indexPath.row] isMemberOfClass:[cellModel class]]) {
+        model = _modelArray[indexPath.row];
+        [cell fillCellWithModel:model];
+    }
     return cell;
 }
+
 
 
 /*
