@@ -41,7 +41,7 @@
 - (void) setupModel{
     _modelArray = [[NSMutableArray alloc] init];
     for (int i = 0; i<20; i++) {
-        cellModel *model = [[cellModel alloc] initWithName:[NSString stringWithFormat:@"Ivan Ivanov"] imageName:@"avat.png" messege:[NSString stringWithFormat:@"messege"]];
+        cellModel *model = [[cellModel alloc] initWithName:[NSString stringWithFormat:@"Ivan Ivanov"] imageName:@"avat.jpg" messege:[NSString stringWithFormat:@"messege"]];
         [_modelArray addObject:model];
     }
     
