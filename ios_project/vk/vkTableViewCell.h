@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 @class cellModel;
 
+@protocol vkTableViewCell
+
+- (void)tableviewCell:(UITableViewCell *)cell;
+
+@end
+
 @interface vkTableViewCell : UITableViewCell
 
 - (void) fillCellWithModel:(cellModel *)model;
