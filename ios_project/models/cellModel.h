@@ -12,7 +12,9 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imageName;
 @property (strong, nonatomic) NSString *messege;
+@property (strong, nonatomic) NSString *user_id;
+@property (nonatomic) BOOL isChat;
 
-- (instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName messege:(NSString *)messege;
+- (instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName messege:(NSString *)messege user_id:(NSString *)user_id isChat:(BOOL)isChat;
 
 @end

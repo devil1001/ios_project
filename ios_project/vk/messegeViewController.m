@@ -9,6 +9,7 @@
 #import "messegeViewController.h"
 #import "messegeModel.h"
 #import "vkMessegeCell.h"
+#import <VKSdk.h>
 
 @interface messegeViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -27,9 +28,7 @@
     self.tableViewMessege.dataSource = self;
     self.tableViewMessege.delegate = self;
     
-    self.title=[NSString stringWithFormat:@"%@", self.userID];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
-    [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
+    self.title=[NSString stringWithFormat:@"%@", self.userName];
     
     //self.navigationController.navigationBar.description;
     // Do any additional setup after loading the view.
@@ -42,9 +41,44 @@
 
 - (void)setupModel{
     _modelArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i<=20; i++) {
-        messegeModel *model = [[messegeModel alloc] initMessege:[NSString stringWithFormat:@"messege"] sender:[NSString stringWithFormat:@"Ivan"]];
-        [_modelArray addObject:model];
+    if (self.isChat) {
+        NSInteger iden = [self.userID integerValue] + 2000000000;
+        NSString *chat_id = [NSString stringWithFormat:@"%ld", iden];
+        VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" , VK_API_USER_ID:chat_id}];
+        [req executeWithResultBlock:^(VKResponse *response){
+            for (int i = 0; i<20; i++) {
+                NSString *message = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"body"]];
+                NSString *sender = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"from_id"]];
+                messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
+                [_modelArray addObject:model];
+            }
+            [_tableViewMessege reloadData];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
+            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
+        }
+                         errorBlock:^(NSError *errorWithName) {
+                             NSLog(@"Error: %@", errorWithName);
+                         }
+         ];
+    }
+    else {
+        VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" , VK_API_USER_ID:self.userID}];
+        [req executeWithResultBlock:^(VKResponse *response){
+            for (int i = 0; i<20; i++) {
+                NSString *message = [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"body"];
+                NSString *sender = [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"from_id"];
+                messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
+                [_modelArray addObject:model];
+            }
+            [_tableViewMessege reloadData];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
+            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
+            
+        }
+        errorBlock:^(NSError *errorWithName) {
+            NSLog(@"Error: %@", errorWithName);
+        }
+         ];
     }
 }
 - (NSInteger)tableView:(UITableView *)tableViewMessege numberOfRowsInSection:(NSInteger)section {

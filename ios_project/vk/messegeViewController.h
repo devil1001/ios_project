@@ -11,5 +11,7 @@
 @interface messegeViewController : UIViewController
 
 @property (strong, nonatomic) NSString *userID;
+@property (strong, nonatomic) NSString *userName;
+@property (nonatomic) BOOL isChat;
 
 @end

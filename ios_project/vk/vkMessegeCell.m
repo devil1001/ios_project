@@ -18,8 +18,8 @@
 @implementation vkMessegeCell
 
 - (void)fillCellWithMessege:(messegeModel *)model{
-    if ([model.sender isEqualToString:[NSString stringWithFormat:@"You"]]) {
-    
+    if ([model.sender integerValue] == 23653477) {
+    //if (true) {
     //self.senderLabel.text = model.sender;
         self.messegeLabel.hidden = false;
         self.messegeLabel.text = model.messege;
