@@ -41,6 +41,11 @@
 
 - (void)setupModel{
     _modelArray = [[NSMutableArray alloc] init];
+    [self loadMessages];
+
+}
+
+- (void) loadMessages{
     if (self.isChat) {
         NSInteger iden = [self.userID integerValue] + 2000000000;
         NSString *chat_id = [NSString stringWithFormat:@"%ld", iden];
@@ -54,7 +59,7 @@
             }
             [_tableViewMessege reloadData];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
-            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
+            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
         }
                          errorBlock:^(NSError *errorWithName) {
                              NSLog(@"Error: %@", errorWithName);
@@ -72,15 +77,16 @@
             }
             [_tableViewMessege reloadData];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
-            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
+            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
             
         }
-        errorBlock:^(NSError *errorWithName) {
-            NSLog(@"Error: %@", errorWithName);
-        }
+                         errorBlock:^(NSError *errorWithName) {
+                             NSLog(@"Error: %@", errorWithName);
+                         }
          ];
     }
 }
+
 - (NSInteger)tableView:(UITableView *)tableViewMessege numberOfRowsInSection:(NSInteger)section {
     return _modelArray.count;
 }
@@ -104,9 +110,15 @@
 - (IBAction)sendMessegeClicked:(UIButton *)sender {
     if (_messegeTextfield!= nil) {
     
-        messegeModel *model = [[messegeModel alloc] initMessege:[NSString stringWithFormat:@"%@", _messegeTextfield.text] sender:[NSString stringWithFormat:@"You"]];
-        [_modelArray addObject:model];
-        [_tableViewMessege reloadData];
+      //  messegeModel *model = [[messegeModel alloc] initMessege:[NSString stringWithFormat:@"%@", _messegeTextfield.text] sender:[NSString stringWithFormat:@"You"]];
+       // [_modelArray addObject:model];
+        
+        VKRequest *req = [VKRequest requestWithMethod:@"messages.send" parameters:@{VK_API_USER_ID : self.userID, VK_API_MESSAGE : [NSString stringWithFormat:@"%@", self.messegeTextfield.text]}];
+        [req executeWithResultBlock:^(VKResponse *response) {
+            [self loadMessages];
+        } errorBlock:^(NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
         [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
         _messegeTextfield.text = nil;
