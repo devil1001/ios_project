@@ -102,7 +102,7 @@
     messegeModel *model;
     if ([_modelArray[indexPath.row] isMemberOfClass:[messegeModel class]]) {
         model = _modelArray[indexPath.row];
-        [cell fillCellWithMessege:model];
+        [cell fillCellWithMessege:model you:_yourId];
     }
     return cell;
 }
@@ -112,13 +112,25 @@
     
       //  messegeModel *model = [[messegeModel alloc] initMessege:[NSString stringWithFormat:@"%@", _messegeTextfield.text] sender:[NSString stringWithFormat:@"You"]];
        // [_modelArray addObject:model];
+        if(self.isChat){
+            NSInteger iden = [self.userID integerValue] + 2000000000;
+            NSString *user_id = [NSString stringWithFormat:@"%ld", iden];
+            VKRequest *req = [VKRequest requestWithMethod:@"messages.send" parameters:@{VK_API_USER_ID : user_id, VK_API_MESSAGE : [NSString stringWithFormat:@"%@", self.messegeTextfield.text]}];
+            [req executeWithResultBlock:^(VKResponse *response) {
+                [self loadMessages];
+            } errorBlock:^(NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+        }
+        else {
+            VKRequest *req = [VKRequest requestWithMethod:@"messages.send" parameters:@{VK_API_USER_IDS : self.userID, VK_API_MESSAGE : [NSString stringWithFormat:@"%@", self.messegeTextfield.text]}];
+            [req executeWithResultBlock:^(VKResponse *response) {
+                [self loadMessages];
+            } errorBlock:^(NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+        }
         
-        VKRequest *req = [VKRequest requestWithMethod:@"messages.send" parameters:@{VK_API_USER_ID : self.userID, VK_API_MESSAGE : [NSString stringWithFormat:@"%@", self.messegeTextfield.text]}];
-        [req executeWithResultBlock:^(VKResponse *response) {
-            [self loadMessages];
-        } errorBlock:^(NSError *error) {
-            NSLog(@"Error: %@", error);
-        }];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
         [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
         _messegeTextfield.text = nil;
@@ -127,5 +139,10 @@
     
     
 }
+
+
+
+
+
 
 @end

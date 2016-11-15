@@ -11,6 +11,6 @@
 
 @interface vkMessegeCell : UITableViewCell
 
-- (void) fillCellWithMessege:(messegeModel *)model;
+- (void) fillCellWithMessege:(messegeModel *)model you:(NSString *)you;
 
 @end

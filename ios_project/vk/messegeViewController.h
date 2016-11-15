@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSString *userID;
 @property (strong, nonatomic) NSString *userName;
 @property (nonatomic) BOOL isChat;
+@property (strong,nonatomic) NSString *yourId;
 
 @end

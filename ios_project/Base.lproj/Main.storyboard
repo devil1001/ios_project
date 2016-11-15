@@ -61,7 +61,7 @@
         <!--Messeges-->
         <scene sceneID="NxS-cX-Ayc">
             <objects>
-                <tableViewController id="6u6-4k-Rn6" customClass="vkTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="vkDIalogsVIew" id="6u6-4k-Rn6" customClass="vkTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" id="f2L-n2-cD3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,6 +121,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Messeges" id="DKB-vZ-4Tx" colorLabel="IBBuiltInLabel-Blue"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="agy-Gd-9rl">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="RefreshTable:" destination="6u6-4k-Rn6" eventType="valueChanged" id="icA-GN-4bT"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPp-gf-H5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

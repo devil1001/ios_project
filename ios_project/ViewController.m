@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "vkTableViewController.h"
 
 static NSString *const TOKEN_KEY = @"my_application_access_token";
 static NSString *const NEXT_CONTROLLER_SEGUE_ID = @"authSegue";
@@ -33,7 +34,18 @@ static NSArray *SCOPE = nil;
 }
 
 - (void)startWorking {
-    [self performSegueWithIdentifier:NEXT_CONTROLLER_SEGUE_ID sender:self];
+    VKRequest *req = [[VKApi users] get];
+    [req executeWithResultBlock:^(VKResponse *response) {
+        NSString *yourId = [[response.json firstObject] valueForKey:@"id"];
+        UIStoryboard *storyBoard = [self storyboard];
+        vkTableViewController *vkDialogView = [storyBoard instantiateViewControllerWithIdentifier:@"vkDIalogsVIew"];
+        vkDialogView.yourId = yourId;
+        [self.navigationController pushViewController:vkDialogView animated:true];
+        //[self performSegueWithIdentifier:NEXT_CONTROLLER_SEGUE_ID sender:self];
+    }
+                     errorBlock:^(NSError *error){
+                         NSLog(@"%@", error);
+                     }];
 }
 
 - (void)didReceiveMemoryWarning {

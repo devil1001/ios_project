@@ -20,7 +20,8 @@
 @implementation vkTableViewCell
 
 - (void)fillCellWithModel:(cellModel *)model {
-    self.cellImageView.image = [UIImage imageNamed:model.imageName];
+    //self.cellImageView.image = [UIImage imageNamed:model.imageName];
+    self.cellImageView.image = [UIImage imageWithContentsOfFile:model.imageName];
     self.cellName.text = model.name;
     self.cellMessege.text = model.messege;
     [self layoutIfNeeded];

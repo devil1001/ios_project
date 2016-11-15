@@ -10,5 +10,6 @@
 
 
 @interface vkTableViewController : UITableViewController
+@property (strong,nonatomic) NSString *yourId;
 
 @end
