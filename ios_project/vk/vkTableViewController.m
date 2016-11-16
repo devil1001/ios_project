@@ -49,6 +49,10 @@
     _userArray = [[NSMutableArray alloc] init];
     VKRequest *req = [VKRequest requestWithMethod:@"messages.getDialogs" parameters:@{VK_API_COUNT : @"20"}];
     [req executeWithResultBlock:^(VKResponse *response){
+        NSInteger count = [[response.json valueForKey:@"count"] integerValue];
+        if (count>=20) {
+            count = 20;
+        }
         for (int i=0; i<20; i++) {
             if([[[[response.json valueForKey:@"items" ] objectAtIndex:i] valueForKey:@"message"] objectForKey:@"fwd_messages"]){
                 if ([[[[[response.json valueForKey:@"items" ] objectAtIndex:i] valueForKey:@"message"] objectForKey:@"body"] isEqualToString:@""]){
