@@ -13,8 +13,8 @@
 @property (strong, nonatomic) NSString *imageName;
 @property (strong, nonatomic) NSString *messege;
 @property (strong, nonatomic) NSString *user_id;
-@property (nonatomic) BOOL isChat;
+@property (nonatomic) BOOL is_Chat;
 
-- (instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName messege:(NSString *)messege user_id:(NSString *)user_id isChat:(BOOL)isChat;
+- (instancetype) initWithName:(NSString *)name imageName:(NSString *)imageName messege:(NSString *)messege user_id:(NSString *)user_id is_Chat:(BOOL)is_Chat;
 
 @end
