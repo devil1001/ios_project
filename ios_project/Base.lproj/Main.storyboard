@@ -42,22 +42,6 @@
             </objects>
             <point key="canvasLocation" x="976.79999999999995" y="-734.48275862068976"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="MbU-wt-Cef">
-            <objects>
-                <navigationController id="ya7-9H-QEv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sic-Zv-4AM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="6u6-4k-Rn6" kind="relationship" relationship="rootViewController" id="2Zh-7p-R5F"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lim-Pt-bJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2055.1999999999998" y="-734.48275862068976"/>
-        </scene>
         <!--Messeges-->
         <scene sceneID="NxS-cX-Ayc">
             <objects>
@@ -245,7 +229,4 @@
             <point key="canvasLocation" x="37.600000000000001" y="-734.48275862068976"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="f4c-6N-svC"/>
-    </inferredMetricsTieBreakers>
 </document>

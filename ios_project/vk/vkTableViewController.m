@@ -135,7 +135,11 @@
 - (IBAction)RefreshTable:(id)sender {
 //    if (!is_refreshing) {
         [self getDialogs];
+    
     [[self tableView] reloadData];
+    UIRefreshControl *refresh = (UIRefreshControl*)sender;
+    [refresh endRefreshing];
+    
 //        is_refreshing = true;
   //  }
 }

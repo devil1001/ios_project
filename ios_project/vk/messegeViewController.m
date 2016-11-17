@@ -49,8 +49,12 @@
     if (self.isChat) {
         NSInteger iden = [self.userID integerValue] + 2000000000;
         NSString *chat_id = [NSString stringWithFormat:@"%ld", iden];
-        VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" , VK_API_USER_ID:chat_id}];
+        VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" ,  VK_API_USER_ID:chat_id}];
         [req executeWithResultBlock:^(VKResponse *response){
+            NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
+            if (dialogsCount>=20){
+                dialogsCount = 20;
+            }
             for (int i = 0; i<20; i++) {
                 NSString *message = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"body"]];
                 NSString *sender = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"from_id"]];
