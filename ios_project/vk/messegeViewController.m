@@ -40,12 +40,14 @@
 }
 
 - (void)setupModel{
-    _modelArray = [[NSMutableArray alloc] init];
+    //_modelArray = [[NSMutableArray alloc] init];
     [self loadMessages];
 
 }
 
 - (void) loadMessages{
+    [_modelArray removeAllObjects];
+    _modelArray = [[NSMutableArray alloc] init];
     if (self.isChat) {
         NSInteger iden = [self.userID integerValue] + 2000000000;
         NSString *chat_id = [NSString stringWithFormat:@"%ld", iden];
