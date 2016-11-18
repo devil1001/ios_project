@@ -55,9 +55,9 @@
             if (dialogsCount>=20){
                 dialogsCount = 20;
             }
-            for (int i = 0; i<20; i++) {
-                NSString *message = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"body"]];
-                NSString *sender = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"from_id"]];
+            for (int i = 0; i<dialogsCount; i++) {
+                NSString *message = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"body"]];
+                NSString *sender = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"from_id"]];
                 messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
                 [_modelArray addObject:model];
             }
@@ -73,9 +73,13 @@
     else {
         VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" , VK_API_USER_ID:self.userID}];
         [req executeWithResultBlock:^(VKResponse *response){
-            for (int i = 0; i<20; i++) {
-                NSString *message = [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"body"];
-                NSString *sender = [[[response.json valueForKey:@"items" ] objectAtIndex:19-i] valueForKey:@"from_id"];
+            NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
+            if (dialogsCount>=20){
+                dialogsCount = 20;
+            }
+            for (int i = 0; i<dialogsCount; i++) {
+                NSString *message = [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"body"];
+                NSString *sender = [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"from_id"];
                 messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
                 [_modelArray addObject:model];
             }
@@ -119,7 +123,7 @@
         if(self.isChat){
             NSInteger iden = [self.userID integerValue] + 2000000000;
             NSString *user_id = [NSString stringWithFormat:@"%ld", iden];
-            VKRequest *req = [VKRequest requestWithMethod:@"messages.send" parameters:@{VK_API_USER_ID : user_id, VK_API_MESSAGE : [NSString stringWithFormat:@"%@", self.messegeTextfield.text]}];
+            VKRequest *req = [VKRequest requestWithMethod:@"messages.send" parameters:@{@"peer_id" : user_id, VK_API_MESSAGE : [NSString stringWithFormat:@"%@", self.messegeTextfield.text]}];
             [req executeWithResultBlock:^(VKResponse *response) {
                 [self loadMessages];
             } errorBlock:^(NSError *error) {

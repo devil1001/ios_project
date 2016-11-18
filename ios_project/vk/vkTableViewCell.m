@@ -40,6 +40,9 @@
     self.cellImageView.image=img;
 }
 
+//библиотеки для загрузки 
+
+
 /*- (void) startDownload:(NSString *)url {
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
