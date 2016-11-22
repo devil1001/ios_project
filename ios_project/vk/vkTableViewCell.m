@@ -8,6 +8,7 @@
 
 #import "vkTableViewCell.h"
 #import "cellModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface vkTableViewCell ()
 
@@ -24,7 +25,8 @@
     //self.cellImageView.image = [UIImage imageNamed:kFilename];
     //self.cellImageView.image = [UIImage imageWithContentsOfFile:model.imageName];
    // [self startDownload:model.imageName];
-    [self probLoad:model.imageName];
+    //[self probLoad:model.imageName];
+    [self.cellImageView sd_setImageWithURL:[NSURL URLWithString:model.imageName] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"user%@.jpg",model.imageName]]];
     self.cellName.text = model.name;
     self.cellMessege.text = model.messege;
     [self layoutIfNeeded];
@@ -32,47 +34,6 @@
     self.cellImageView.layer.cornerRadius = self.cellImageView.frame.size.width / 1.75;//25.f;
 }
 
-- (void) probLoad:(NSString *)url {
-    self.imageView.image = nil;
-    NSURL *url2 = [NSURL URLWithString:url];
-    NSData *data = [NSData dataWithContentsOfURL:url2];
-    UIImage *img = [[UIImage alloc] initWithData:data];
-    self.cellImageView.image=img;
-}
-
-//библиотеки для загрузки 
-
-
-/*- (void) startDownload:(NSString *)url {
-    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
-    NSURL* downloadTaskURL = [NSURL URLWithString:url];
-    [[session downloadTaskWithURL: downloadTaskURL
-                completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                    
-                    NSFileManager *fileManager = [NSFileManager defaultManager];
-                    
-                    NSArray *urls = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-                    NSURL *documentsDirectory = [urls objectAtIndex:0];
-                    
-                    NSURL *originalUrl = [NSURL URLWithString:[downloadTaskURL lastPathComponent]];
-                    NSURL *destinationUrl = [documentsDirectory URLByAppendingPathComponent:[originalUrl lastPathComponent]];
-                    NSError *fileManagerError;
-                    
-                    [fileManager removeItemAtURL:destinationUrl error:NULL];
-                    //ключевая  строчка!
-                    [fileManager copyItemAtURL:location toURL:destinationUrl error:&fileManagerError];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        NSString *stringPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-                        NSString *fullURLString  = [stringPath stringByAppendingPathComponent:kFilename];
-                        self.cellImageView.image = [UIImage imageWithContentsOfFile:fullURLString];;
-
-                    });
-                }] resume];
-    
-}
- */
 
 
 @end

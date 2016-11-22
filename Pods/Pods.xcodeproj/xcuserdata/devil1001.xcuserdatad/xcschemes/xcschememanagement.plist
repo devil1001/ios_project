@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VK-ios-sdk-VKSdkResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>103335A71F9790F4A73095E8DFE75609</key>
+		<key>2707E8A0F23883134F2D9C6A1F64F67B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F42ECBB1027A14F45EF3CBF03F9D284</key>
+		<key>96970B2436DFBE8D8AE4C90B0F2D2F0A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BFC02B0C7344F72F39DBD031063C1315</key>
+		<key>ACEBB5182493D4BEC6C8218C8B239CFC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B031F1CFFAA38F629670011C84376058</key>
 		<dict>
 			<key>primary</key>
 			<true/>
