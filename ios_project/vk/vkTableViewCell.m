@@ -19,13 +19,8 @@
 @end
 
 @implementation vkTableViewCell
-//NSString * const kFilename = @"avat.jpg";
 
 - (void)fillCellWithModel:(cellModel *)model {
-    //self.cellImageView.image = [UIImage imageNamed:kFilename];
-    //self.cellImageView.image = [UIImage imageWithContentsOfFile:model.imageName];
-   // [self startDownload:model.imageName];
-    //[self probLoad:model.imageName];
     [self.cellImageView sd_setImageWithURL:[NSURL URLWithString:model.imageName] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"user%@.jpg",model.imageName]]];
     self.cellName.text = model.name;
     self.cellMessege.text = model.messege;

@@ -42,6 +42,7 @@
 - (void)setupModel{
     //_modelArray = [[NSMutableArray alloc] init];
     [self loadMessages];
+   // [self sendingPhoto];
 
 }
 
@@ -151,7 +152,18 @@
 }
 
 
-
+- (void)sendingPhoto{
+    //VKRequest *req = [VKRequest requestWithMethod:@"photos.getMessagesUploadServer"];
+    VKRequest *req = [VKRequest requestWithMethod:@"photos.getMessagesUploadServer" parameters:@{}];
+    [req executeWithResultBlock:^(VKResponse *response){
+        NSString *upload_url = [response.json valueForKey:@"upload_url"];
+        NSLog(@"response = %@", upload_url);
+    }
+                     errorBlock:^(NSError *error) {
+                         NSLog(@"Error: %@", error);
+    }];
+    
+}
 
 
 

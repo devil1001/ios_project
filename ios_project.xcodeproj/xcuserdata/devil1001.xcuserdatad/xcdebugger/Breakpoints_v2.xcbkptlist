@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkMessegeCell.m"
-            timestampString = "500491436.750041"
+            timestampString = "501694998.228581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "-fillCellWithMessege:you:"
             landmarkType = "7">
          </BreakpointContent>

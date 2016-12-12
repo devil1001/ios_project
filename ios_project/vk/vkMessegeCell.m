@@ -32,8 +32,6 @@
             self.messegeLabel.hidden = true;
         }
         [self layoutIfNeeded];
-    //VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" , VK_API_USER_ID:chat_id}];
-    //[req executeWithResultBlock:^(VKResponse *response){
     }
 
 @end

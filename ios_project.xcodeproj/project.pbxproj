@@ -21,6 +21,9 @@
 		18B527F11DBBFF3B00A3F650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B527F01DBBFF3B00A3F650 /* Assets.xcassets */; };
 		18B527F41DBBFF3B00A3F650 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B527F21DBBFF3B00A3F650 /* LaunchScreen.storyboard */; };
 		18B527FE1DBBFF8500A3F650 /* cellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B527FD1DBBFF8500A3F650 /* cellModel.m */; };
+		18F361431DFF489000D80FA6 /* GeoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F361421DFF489000D80FA6 /* GeoCollectionViewController.m */; };
+		18F361461DFF494400D80FA6 /* GeoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F361451DFF494400D80FA6 /* GeoCell.m */; };
+		18F361491DFF4A5900D80FA6 /* GeoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F361481DFF4A5900D80FA6 /* GeoModel.m */; };
 		6F638A062611D6C9C8804417 /* libPods-ios_project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AD7668A8FA68AD2EF5D7B3 /* libPods-ios_project.a */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,12 @@
 		18B527F51DBBFF3B00A3F650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B527FC1DBBFF8500A3F650 /* cellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellModel.h; sourceTree = "<group>"; };
 		18B527FD1DBBFF8500A3F650 /* cellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cellModel.m; sourceTree = "<group>"; };
+		18F361411DFF489000D80FA6 /* GeoCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoCollectionViewController.h; sourceTree = "<group>"; };
+		18F361421DFF489000D80FA6 /* GeoCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoCollectionViewController.m; sourceTree = "<group>"; };
+		18F361441DFF494400D80FA6 /* GeoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoCell.h; sourceTree = "<group>"; };
+		18F361451DFF494400D80FA6 /* GeoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoCell.m; sourceTree = "<group>"; };
+		18F361471DFF4A5900D80FA6 /* GeoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoModel.h; sourceTree = "<group>"; };
+		18F361481DFF4A5900D80FA6 /* GeoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoModel.m; sourceTree = "<group>"; };
 		49AD7668A8FA68AD2EF5D7B3 /* libPods-ios_project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios_project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B2D4DEF3FC737DDB5AF61F /* Pods-ios_project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_project/Pods-ios_project.debug.xcconfig"; sourceTree = "<group>"; };
 		F701B5C43A7DB6A39A3C555A /* Pods-ios_project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_project.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_project/Pods-ios_project.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +112,7 @@
 		18B527E31DBBFF3B00A3F650 /* ios_project */ = {
 			isa = PBXGroup;
 			children = (
+				18F361401DFF483C00D80FA6 /* geo */,
 				18D2773A1DBE78160024E41F /* images */,
 				1888D3BD1DBE53580002D3B3 /* vk */,
 				18B527FB1DBBFF4500A3F650 /* models */,
@@ -136,6 +146,8 @@
 				1826D2141DBF76B00025B980 /* messegeModel.m */,
 				1825A9FE1DD0F08700180821 /* userModel.h */,
 				1825A9FF1DD0F08700180821 /* userModel.m */,
+				18F361471DFF4A5900D80FA6 /* GeoModel.h */,
+				18F361481DFF4A5900D80FA6 /* GeoModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -146,6 +158,17 @@
 				1826D2111DBF69B50025B980 /* avat.jpg */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		18F361401DFF483C00D80FA6 /* geo */ = {
+			isa = PBXGroup;
+			children = (
+				18F361411DFF489000D80FA6 /* GeoCollectionViewController.h */,
+				18F361421DFF489000D80FA6 /* GeoCollectionViewController.m */,
+				18F361441DFF494400D80FA6 /* GeoCell.h */,
+				18F361451DFF494400D80FA6 /* GeoCell.m */,
+			);
+			path = geo;
 			sourceTree = "<group>";
 		};
 		3EBC84348ABA8A1EFB75DBA7 /* Frameworks */ = {
@@ -199,6 +222,7 @@
 				TargetAttributes = {
 					18B527E01DBBFF3B00A3F650 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = GXXBVRREX8;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -289,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1888D3C01DBE537C0002D3B3 /* vkTableViewController.m in Sources */,
+				18F361491DFF4A5900D80FA6 /* GeoModel.m in Sources */,
 				18B527EC1DBBFF3B00A3F650 /* ViewController.m in Sources */,
 				18B527E91DBBFF3B00A3F650 /* AppDelegate.m in Sources */,
 				1826D2151DBF76B00025B980 /* messegeModel.m in Sources */,
@@ -296,8 +321,10 @@
 				18B527E61DBBFF3B00A3F650 /* main.m in Sources */,
 				1826D21B1DBF79C20025B980 /* vkMessegeCell.m in Sources */,
 				1825AA001DD0F08700180821 /* userModel.m in Sources */,
+				18F361431DFF489000D80FA6 /* GeoCollectionViewController.m in Sources */,
 				18B527FE1DBBFF8500A3F650 /* cellModel.m in Sources */,
 				1888D3C31DBE566A0002D3B3 /* vkTableViewCell.m in Sources */,
+				18F361461DFF494400D80FA6 /* GeoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +447,9 @@
 			baseConfigurationReference = A2B2D4DEF3FC737DDB5AF61F /* Pods-ios_project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GXXBVRREX8;
 				INFOPLIST_FILE = ios_project/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.ios-project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -432,7 +461,9 @@
 			baseConfigurationReference = F701B5C43A7DB6A39A3C555A /* Pods-ios_project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GXXBVRREX8;
 				INFOPLIST_FILE = ios_project/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.ios-project";
 				PRODUCT_NAME = "$(TARGET_NAME)";

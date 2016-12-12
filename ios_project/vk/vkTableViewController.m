@@ -53,8 +53,8 @@
     VKRequest *req = [VKRequest requestWithMethod:@"messages.getDialogs" parameters:@{VK_API_COUNT : @"20"}];
     [req executeWithResultBlock:^(VKResponse *response){
         NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
-        if (dialogsCount>=20) {
-            dialogsCount = 20;
+        if (dialogsCount>=7) {
+            dialogsCount = 7;
         }
         for (int i=0; i<dialogsCount; i++) {
             if([[[[response.json valueForKey:@"items" ] objectAtIndex:i] valueForKey:@"message"] objectForKey:@"fwd_messages"]){
