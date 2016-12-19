@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501087847.123582"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501087847.123582"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501087847.123582"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501087847.123582"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501034451.104292"
+            timestampString = "503837981.464987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "@interface vkTableViewController()"
             landmarkType = "2">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501087847.123582"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501034451.104292"
+            timestampString = "503837981.464987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-setupModel"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501034451.104292"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-getDialogs"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501034451.104292"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-getDialogs"
             landmarkType = "7">
             <Locations>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501034673.639033"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-getDialogs"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501034939.732853"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-getDialogs"
             landmarkType = "7">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501034941.873287"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-getDialogs"
             landmarkType = "7">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "501080375.188908"
+            timestampString = "503837981.464987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "@interface vkTableViewController()"
             landmarkType = "2">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/vkTableViewController.m"
-            timestampString = "502995394.080359"
+            timestampString = "503840140.021999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-getDialogs"
             landmarkType = "7">
          </BreakpointContent>
@@ -592,6 +592,38 @@
             startingLineNumber = "54"
             endingLineNumber = "54"
             landmarkName = "-getPhotos"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_project/vk/vkTableViewController.m"
+            timestampString = "503840140.021999"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-getDialogs"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_project/vk/vkTableViewController.m"
+            timestampString = "503840140.021999"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-getDialogs"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

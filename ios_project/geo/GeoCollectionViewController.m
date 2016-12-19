@@ -40,11 +40,11 @@ static NSString * const reuseIdentifier = @"Cell";
     VKRequest *req = [VKRequest requestWithMethod:@"photos.search" parameters:@{@"lat": @"60", @"long": @"60", @"radius": @"5000"}];
     [req executeWithResultBlock:^(VKResponse *response){
         NSInteger count;
-        if ([[response.json valueForKey:@"count"] integerValue]<7) {
+        if ([[response.json valueForKey:@"count"] integerValue]<15) {
             count = [[response.json valueForKey:@"count"] integerValue];
         }
         else {
-            count = 7;
+            count = 15;
         }
         for (int i=0; i<count; i++) {
             NSString *imageName = [[[response.json valueForKey:@"items"]objectAtIndex:i] valueForKey:@"photo_75"];

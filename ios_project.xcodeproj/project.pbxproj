@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181AAA611E0136D300B61347 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 181AAA5F1E0136D300B61347 /* Model.xcdatamodeld */; };
 		1825AA001DD0F08700180821 /* userModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825A9FF1DD0F08700180821 /* userModel.m */; };
 		1826D2121DBF69B50025B980 /* avat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1826D2111DBF69B50025B980 /* avat.jpg */; };
 		1826D2151DBF76B00025B980 /* messegeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1826D2141DBF76B00025B980 /* messegeModel.m */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181AAA601E0136D300B61347 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1825A9FE1DD0F08700180821 /* userModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userModel.h; sourceTree = "<group>"; };
 		1825A9FF1DD0F08700180821 /* userModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userModel.m; sourceTree = "<group>"; };
 		1826D2111DBF69B50025B980 /* avat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avat.jpg; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				18B527F21DBBFF3B00A3F650 /* LaunchScreen.storyboard */,
 				18B527F51DBBFF3B00A3F650 /* Info.plist */,
 				18B527E41DBBFF3B00A3F650 /* Supporting Files */,
+				181AAA5F1E0136D300B61347 /* Model.xcdatamodeld */,
 			);
 			path = ios_project;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				1888D3C01DBE537C0002D3B3 /* vkTableViewController.m in Sources */,
 				18F361491DFF4A5900D80FA6 /* GeoModel.m in Sources */,
 				18B527EC1DBBFF3B00A3F650 /* ViewController.m in Sources */,
+				181AAA611E0136D300B61347 /* Model.xcdatamodeld in Sources */,
 				18B527E91DBBFF3B00A3F650 /* AppDelegate.m in Sources */,
 				1826D2151DBF76B00025B980 /* messegeModel.m in Sources */,
 				189D9F961DC0D9C400E2C392 /* messegeViewController.m in Sources */,
@@ -492,6 +496,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		181AAA5F1E0136D300B61347 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				181AAA601E0136D300B61347 /* Model.xcdatamodel */,
+			);
+			currentVersion = 181AAA601E0136D300B61347 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18B527D91DBBFF3B00A3F650 /* Project object */;
 }

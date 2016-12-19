@@ -1,17 +1,23 @@
 PODS:
+  - Realm (2.1.1):
+    - Realm/Headers (= 2.1.1)
+  - Realm/Headers (2.1.1)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - VK-ios-sdk (1.4.4)
+  - VK-ios-sdk (1.4.6)
 
 DEPENDENCIES:
+  - Realm
+  - Realm/Headers
   - SDWebImage (~> 3.8)
   - VK-ios-sdk
 
 SPEC CHECKSUMS:
+  Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  VK-ios-sdk: 296c3be1bb45faf4d9f9a2ca69dcf6ec71d9d4df
+  VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
 
-PODFILE CHECKSUM: 05764018c725ed6d002be7762122ad17a3bab6e5
+PODFILE CHECKSUM: bd2de711b61904e5c0fa778fc941bc199887ff12
 
 COCOAPODS: 1.1.1

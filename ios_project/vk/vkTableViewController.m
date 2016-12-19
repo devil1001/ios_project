@@ -12,6 +12,29 @@
 #import "messegeViewController.h"
 #import <VKSdk.h>
 #import "userModel.h"
+#import <Realm/Realm.h>
+@interface DialogHistory : RLMObject
+@property NSData *dialogHistory;
+@property NSString *user;
+@end
+
+@interface DialogsBase : RLMObject
+@property NSString *message;
+@property NSInteger id;
+@property NSString *photoName;
+@property NSString *name;
+@end
+
+@implementation DialogsBase
++ (NSString *) primaryKey {
+    return @"id";
+}
+@end
+@implementation DialogHistory
++ (NSString *) primaryKey {
+    return @"user";
+}
+@end
 
 @interface vkTableViewController ()
 {
@@ -90,6 +113,7 @@
         }
         VKRequest *req1 = [[VKApi users] get:@{VK_API_FIELDS : @"first_name, last_name, photo_50", VK_API_USER_IDS : [_userArray valueForKey:@"id"]}];
         [req1 executeWithResultBlock: ^(VKResponse *response2) {
+            DialogsBase *dialogBase = [[DialogsBase alloc] init];
             for (int i=0; i<dialogsCount; i++) {
                 if ([[[_userArray objectAtIndex:i] valueForKey:@"title" ] isEqual: @" ... "]){
                     NSString *firstname = [[response2.json valueForKey:@"first_name"] objectAtIndex:i];
@@ -99,6 +123,16 @@
                     NSString *avat = [[response2.json valueForKey:@"photo_50"] objectAtIndex:i];
                     cellModel *model = [[cellModel alloc] initWithName:name imageName:avat messege:[_messageArray objectAtIndex:i] user_id:user_id is_Chat:false];
                     [_modelArray addObject:model];
+                    dialogBase.photoName = avat;
+                    dialogBase.id = [user_id integerValue];
+                    dialogBase.message = [_messageArray objectAtIndex:i];
+                    dialogBase.name = name;
+                    RLMRealm *realm = [RLMRealm defaultRealm];
+                    [realm beginWriteTransaction];
+                    [DialogsBase createOrUpdateInRealm:realm withValue:dialogBase];
+                    [realm commitWriteTransaction];
+                    
+                    
                 }
                 else {
                     NSString *name = [[_userArray objectAtIndex:i] valueForKey:@"title"];
@@ -106,10 +140,19 @@
                     NSString *avat = [[response2.json valueForKey:@"photo_50"] objectAtIndex:i];
                     cellModel *model = [[cellModel alloc] initWithName:name imageName:avat messege:[_messageArray objectAtIndex:i] user_id:user_id is_Chat:true];
                     [_modelArray addObject:model];
+                    dialogBase.photoName = avat;
+                    dialogBase.id = [user_id integerValue];
+                    dialogBase.message = [_messageArray objectAtIndex:i];
+                    dialogBase.name = name;
+                    RLMRealm *realm = [RLMRealm defaultRealm];
+                    [realm beginWriteTransaction];
+                    [DialogsBase createOrUpdateInRealm:realm withValue:dialogBase];
+                    [realm commitWriteTransaction];
                 }
             }
            // if (first_time) {
                 [[self tableView] reloadData];
+            NSLog(@"%@", [DialogsBase allObjects]);
              //   first_time = false;
             //}
             
@@ -118,10 +161,10 @@
             NSLog(@"Error: %@", errorWithName);
         }
          ];
-    }
-                     errorBlock:^(NSError *error){
-                         NSLog(@"Error: %@", error);
-                     }];
+    } errorBlock:^(NSError *error){
+        NSLog(@"Error: %@", error);
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
