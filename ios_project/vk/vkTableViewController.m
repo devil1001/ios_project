@@ -23,6 +23,7 @@
 @property NSInteger id;
 @property NSString *photoName;
 @property NSString *name;
+@property NSString *time;
 @end
 
 @implementation DialogsBase
@@ -42,13 +43,17 @@
     NSMutableArray *_userArray;
     NSMutableArray *_messageArray;
     NSMutableArray *_chatArray;
+    NSMutableArray *_timeArray;
 }
+@property (nonatomic) BOOL isRefreshing;
+@property (nonatomic) BOOL isReactDownload;
 @end
 
 @implementation vkTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self downloadFromRealm];
     [self setupModel];
 }
 
@@ -60,24 +65,27 @@
 #pragma mark - Table view data source
 
 - (void) setupModel{
-    
+    _isRefreshing = true;
     [self getDialogs];
 }
 
 - (void) getDialogs{
-    [_modelArray removeAllObjects];
-    [_userArray removeAllObjects];
-    [_messageArray removeAllObjects];
-    [_chatArray removeAllObjects];
-    _modelArray = [[NSMutableArray alloc] init];
-    _messageArray = [[NSMutableArray alloc] init];
-    _userArray = [[NSMutableArray alloc] init];
-    _chatArray = [[NSMutableArray alloc] init];
+
     VKRequest *req = [VKRequest requestWithMethod:@"messages.getDialogs" parameters:@{VK_API_COUNT : @"20"}];
     [req executeWithResultBlock:^(VKResponse *response){
+        [_modelArray removeAllObjects];
+        [_userArray removeAllObjects];
+        [_messageArray removeAllObjects];
+        [_chatArray removeAllObjects];
+        [_timeArray removeAllObjects];
+        _modelArray = [[NSMutableArray alloc] init];
+        _messageArray = [[NSMutableArray alloc] init];
+        _userArray = [[NSMutableArray alloc] init];
+        _chatArray = [[NSMutableArray alloc] init];
+        _timeArray = [[NSMutableArray alloc] init];
         NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
-        if (dialogsCount>=7) {
-            dialogsCount = 7;
+        if (dialogsCount>=15) {
+            dialogsCount = 15;
         }
         for (int i=0; i<dialogsCount; i++) {
             if([[[[response.json valueForKey:@"items" ] objectAtIndex:i] valueForKey:@"message"] objectForKey:@"fwd_messages"]){
@@ -110,7 +118,11 @@
                 NSString *lastUser = @"...";
                 [_chatArray addObject:lastUser];
             }
+            NSString *time = [NSString stringWithFormat:@"%@", [[[[response.json valueForKey:@"items"] objectAtIndex:i] valueForKey:@"message"] valueForKey:@"date"]];
+            [_timeArray addObject:time];
         }
+        if (([_userArray count]!=0)&&([_timeArray count] !=0)&&([_messageArray count]!=0)) {
+        
         VKRequest *req1 = [[VKApi users] get:@{VK_API_FIELDS : @"first_name, last_name, photo_50", VK_API_USER_IDS : [_userArray valueForKey:@"id"]}];
         [req1 executeWithResultBlock: ^(VKResponse *response2) {
             DialogsBase *dialogBase = [[DialogsBase alloc] init];
@@ -127,12 +139,11 @@
                     dialogBase.id = [user_id integerValue];
                     dialogBase.message = [_messageArray objectAtIndex:i];
                     dialogBase.name = name;
+                    dialogBase.time = [_timeArray objectAtIndex:i];
                     RLMRealm *realm = [RLMRealm defaultRealm];
                     [realm beginWriteTransaction];
                     [DialogsBase createOrUpdateInRealm:realm withValue:dialogBase];
                     [realm commitWriteTransaction];
-                    
-                    
                 }
                 else {
                     NSString *name = [[_userArray objectAtIndex:i] valueForKey:@"title"];
@@ -143,6 +154,7 @@
                     dialogBase.photoName = avat;
                     dialogBase.id = [user_id integerValue];
                     dialogBase.message = [_messageArray objectAtIndex:i];
+                    dialogBase.time = [_timeArray objectAtIndex:i];
                     dialogBase.name = name;
                     RLMRealm *realm = [RLMRealm defaultRealm];
                     [realm beginWriteTransaction];
@@ -150,19 +162,16 @@
                     [realm commitWriteTransaction];
                 }
             }
-           // if (first_time) {
+                _isRefreshing = false;
                 [[self tableView] reloadData];
-            NSLog(@"%@", [DialogsBase allObjects]);
-             //   first_time = false;
-            //}
-            
-            //          is_refreshing = false;
         } errorBlock:^(NSError *errorWithName) {
             NSLog(@"Error: %@", errorWithName);
         }
          ];
+        }
     } errorBlock:^(NSError *error){
         NSLog(@"Error: %@", error);
+        [self downloadFromRealm];
         
     }];
 }
@@ -176,13 +185,19 @@
 }
 
 - (IBAction)RefreshTable:(id)sender {
-//    if (!is_refreshing) {
+    if (!_isRefreshing) {
+        _isRefreshing = true;
+        [_modelArray removeAllObjects];
+        [_userArray removeAllObjects];
+        [_messageArray removeAllObjects];
+        [_chatArray removeAllObjects];
+        [_timeArray removeAllObjects];
         [self getDialogs];
-    
-    [[self tableView] reloadData];
-    UIRefreshControl *refresh = (UIRefreshControl*)sender;
-    [refresh endRefreshing];
-    
+        [[self tableView] reloadData];
+        [self downloadFromRealm];
+    }
+        UIRefreshControl *refresh = (UIRefreshControl*)sender;
+        [refresh endRefreshing];
 //        is_refreshing = true;
   //  }
 }
@@ -191,29 +206,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     vkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIndeficator" forIndexPath:indexPath];
     cellModel *model;
-    if ([_modelArray[indexPath.row] isMemberOfClass:[cellModel class]]) {
+    if (([_modelArray[indexPath.row] isMemberOfClass:[cellModel class]])&&(!_isReactDownload||!_isRefreshing)) {
         model = _modelArray[indexPath.row];
         [cell fillCellWithModel:model];
     }
     return cell;
 }
 
-
-/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- if ([segue.identifier isEqualToString:@"dialogChoosen"]) {
- 
-     NSIndexPath *indexPath = (NSIndexPath *)sender;
-     messegeViewController *messegeView = [segue destinationViewController];
-     cellModel *model;
-     model = _modelArray[indexPath.row];
-     messegeView.userID = model.name;
-     NSLog(@"%@", messegeView.userID);
- //обращаемся к вью по айди и даем параметру нужные данныеl
-     //UIViewController *view = [[UIViewController alloc] initWithNibName:@"messegeView" bundle:];
- 
- }
- 
- }*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //[self.navigationController performSegueWithIdentifier:@"dialogChoose" sender:indexPath];
@@ -231,5 +230,25 @@
 
 //отрисовывать наоборот переворотами!!!
 
+- (void) downloadFromRealm {
+    _isReactDownload = true;
+    [_modelArray removeAllObjects];
+    _modelArray = [[NSMutableArray alloc] init];
+    RLMResults *result = [[DialogsBase allObjects] sortedResultsUsingProperty:@"time" ascending:NO];
+    //NSLog(@"%@", result);
+    NSUInteger count = [result count];
+    for (int i = 0; i<count; i++) {
+        NSString *user_id = [[result objectAtIndex:i] valueForKey:@"id"];
+        NSString *name = [[result objectAtIndex:i] valueForKey:@"name"];
+        NSString *message = [[result objectAtIndex:i] valueForKey:@"message"];
+        NSString *photo = [[result objectAtIndex:i] valueForKey:@"photoName"];
+        cellModel *model = [[cellModel alloc] initWithName:name imageName:photo messege:message user_id:user_id is_Chat:NO];
+        [_modelArray addObject:model];
+    }
+    _isReactDownload = false;
+    [[self tableView] reloadData];
+    
+    //NSLog(@"%ld", count);
+}
 
 @end

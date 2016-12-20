@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "__35-[vkTableViewController getDialogs]_block_invoke_2:vkTableViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_timeArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__35-[vkTableViewController setupModel]_block_invoke:vkTableViewController.m">
          <PersistentStrings>
             <PersistentString
