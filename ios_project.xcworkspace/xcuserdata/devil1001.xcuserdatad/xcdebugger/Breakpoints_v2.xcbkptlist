@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_project/vk/messegeViewController.m"
-            timestampString = "501700924.966311"
+            timestampString = "504049812.844116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "-loadMessages"
             landmarkType = "7">
          </BreakpointContent>
@@ -720,6 +720,22 @@
             startingLineNumber = "188"
             endingLineNumber = "188"
             landmarkName = "-RefreshTable:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_project/vk/messegeViewController.m"
+            timestampString = "504049812.844116"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "-keyboardWillChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

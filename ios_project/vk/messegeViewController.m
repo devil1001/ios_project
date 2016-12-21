@@ -17,6 +17,8 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMessege;
 @property (weak, nonatomic) IBOutlet UITextField *messegeTextfield;
+@property (strong, nonatomic) IBOutlet UIView *ScrollView;
+@property (nonatomic) BOOL keybWillChange;
 
 @end
 
@@ -24,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _keybWillChange = false;
     [self setupModel];
     self.tableViewMessege.dataSource = self;
     self.tableViewMessege.delegate = self;
@@ -145,6 +148,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
         [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
         _messegeTextfield.text = nil;
+        [_ScrollView endEditing:YES];
         
     }
     
@@ -164,6 +168,46 @@
     }];
     
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChange:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillChangeFrameNotification
+                                                  object:nil];
+}
+
+#pragma mark - keyboard
+
+
+- (void)keyboardWillChange:(NSNotification *)notification
+{
+    if (_keybWillChange) {
+        [UIView beginAnimations:nil context:nil];
+        //[UIView setAnimationDuration:0.3];
+        _ScrollView.frame = CGRectMake(_ScrollView.frame.origin.x, 0, _ScrollView.frame.size.width, _ScrollView.frame.size.height);
+        [UIView commitAnimations];
+
+        _keybWillChange = false;
+        return;
+    }
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    _ScrollView.frame = CGRectMake(_ScrollView.frame.origin.x, -260, _ScrollView.frame.size.width, _ScrollView.frame.size.height);
+    [UIView commitAnimations];
+    _keybWillChange = true;
+}
+
+
 
 
 
