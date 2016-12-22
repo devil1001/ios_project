@@ -14,6 +14,9 @@
 		1826D21B1DBF79C20025B980 /* vkMessegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1826D21A1DBF79C20025B980 /* vkMessegeCell.m */; };
 		1888D3C01DBE537C0002D3B3 /* vkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888D3BF1DBE537C0002D3B3 /* vkTableViewController.m */; };
 		1888D3C31DBE566A0002D3B3 /* vkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888D3C21DBE566A0002D3B3 /* vkTableViewCell.m */; };
+		188DFB421E0B32DB00CC4897 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DFB411E0B32DB00CC4897 /* CoreLocation.framework */; };
+		188DFB441E0B3D1600CC4897 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DFB431E0B3D1600CC4897 /* MapKit.framework */; };
+		188DFB471E0B470500CC4897 /* StartNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DFB461E0B470500CC4897 /* StartNavigationBar.m */; };
 		189D9F961DC0D9C400E2C392 /* messegeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D9F951DC0D9C400E2C392 /* messegeViewController.m */; };
 		18B527E61DBBFF3B00A3F650 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B527E51DBBFF3B00A3F650 /* main.m */; };
 		18B527E91DBBFF3B00A3F650 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B527E81DBBFF3B00A3F650 /* AppDelegate.m */; };
@@ -41,6 +44,10 @@
 		1888D3BF1DBE537C0002D3B3 /* vkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vkTableViewController.m; sourceTree = "<group>"; };
 		1888D3C11DBE566A0002D3B3 /* vkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vkTableViewCell.h; sourceTree = "<group>"; };
 		1888D3C21DBE566A0002D3B3 /* vkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vkTableViewCell.m; sourceTree = "<group>"; };
+		188DFB411E0B32DB00CC4897 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		188DFB431E0B3D1600CC4897 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		188DFB451E0B470500CC4897 /* StartNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartNavigationBar.h; sourceTree = "<group>"; };
+		188DFB461E0B470500CC4897 /* StartNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartNavigationBar.m; sourceTree = "<group>"; };
 		189D9F941DC0D9C400E2C392 /* messegeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messegeViewController.h; sourceTree = "<group>"; };
 		189D9F951DC0D9C400E2C392 /* messegeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messegeViewController.m; sourceTree = "<group>"; };
 		18B527E11DBBFF3B00A3F650 /* ios_project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_project.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188DFB421E0B32DB00CC4897 /* CoreLocation.framework in Frameworks */,
+				188DFB441E0B3D1600CC4897 /* MapKit.framework in Frameworks */,
 				6F638A062611D6C9C8804417 /* libPods-ios_project.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +132,8 @@
 				18B527EA1DBBFF3B00A3F650 /* ViewController.h */,
 				18B527EB1DBBFF3B00A3F650 /* ViewController.m */,
 				18B527ED1DBBFF3B00A3F650 /* Main.storyboard */,
+				188DFB451E0B470500CC4897 /* StartNavigationBar.h */,
+				188DFB461E0B470500CC4897 /* StartNavigationBar.m */,
 				18B527F01DBBFF3B00A3F650 /* Assets.xcassets */,
 				18B527F21DBBFF3B00A3F650 /* LaunchScreen.storyboard */,
 				18B527F51DBBFF3B00A3F650 /* Info.plist */,
@@ -177,6 +188,8 @@
 		3EBC84348ABA8A1EFB75DBA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				188DFB431E0B3D1600CC4897 /* MapKit.framework */,
+				188DFB411E0B32DB00CC4897 /* CoreLocation.framework */,
 				49AD7668A8FA68AD2EF5D7B3 /* libPods-ios_project.a */,
 			);
 			name = Frameworks;
@@ -227,6 +240,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = GXXBVRREX8;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -326,6 +344,7 @@
 				1826D21B1DBF79C20025B980 /* vkMessegeCell.m in Sources */,
 				1825AA001DD0F08700180821 /* userModel.m in Sources */,
 				18F361431DFF489000D80FA6 /* GeoCollectionViewController.m in Sources */,
+				188DFB471E0B470500CC4897 /* StartNavigationBar.m in Sources */,
 				18B527FE1DBBFF8500A3F650 /* cellModel.m in Sources */,
 				1888D3C31DBE566A0002D3B3 /* vkTableViewCell.m in Sources */,
 				18F361461DFF494400D80FA6 /* GeoCell.m in Sources */,

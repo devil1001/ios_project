@@ -46,30 +46,26 @@
         <scene sceneID="NRQ-UD-1MC">
             <objects>
                 <collectionViewController id="il0-zx-qAr" customClass="GeoCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="3RK-QY-sKg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="3RK-QY-sKg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xXx-px-Na7">
-                            <size key="itemSize" width="156" height="156"/>
+                            <size key="itemSize" width="242" height="199"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GeoImage" id="Gba-MR-K5m" customClass="GeoCell">
-                                <rect key="frame" x="0.0" y="0.0" width="156" height="156"/>
+                                <rect key="frame" x="67" y="0.0" width="242" height="199"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="156" height="156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="242" height="199"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tqm-Gk-Cbv">
                                             <rect key="frame" x="0.0" y="0.0" width="156" height="156"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="3FT-ZC-3ec"/>
-                                                <constraint firstAttribute="height" constant="75" id="Odl-j4-WIr"/>
-                                            </constraints>
                                         </imageView>
                                     </subviews>
                                 </view>
@@ -93,7 +89,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nM4-dg-fJ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029.5999999999999" y="757.87106446776613"/>
+            <point key="canvasLocation" x="1957.5999999999999" y="1000.7496251874064"/>
         </scene>
         <!--Messeges-->
         <scene sceneID="NxS-cX-Ayc">
@@ -157,7 +153,13 @@
                             <outlet property="delegate" destination="6u6-4k-Rn6" id="BBJ-An-w5B"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Messeges" id="DKB-vZ-4Tx" colorLabel="IBBuiltInLabel-Blue"/>
+                    <navigationItem key="navigationItem" title="Messeges" id="DKB-vZ-4Tx" colorLabel="IBBuiltInLabel-Blue">
+                        <barButtonItem key="rightBarButtonItem" title="ShowImages" id="C58-PZ-XDM">
+                            <connections>
+                                <segue destination="il0-zx-qAr" kind="show" id="q15-VV-e4V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="agy-Gd-9rl">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>

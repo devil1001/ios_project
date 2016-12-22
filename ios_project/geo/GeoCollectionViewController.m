@@ -10,44 +10,72 @@
 #import <VKSdk.h>
 #import "GeoModel.h"
 #import "GeoCell.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface GeoCollectionViewController () <UICollectionViewDelegate ,UICollectionViewDataSource> {
+@interface GeoCollectionViewController () <UICollectionViewDelegate ,UICollectionViewDataSource,CLLocationManagerDelegate> {
     NSMutableArray *_modelArray;
 }
-
 @end
 
-@implementation GeoCollectionViewController
+@implementation GeoCollectionViewController{
+    CLLocationManager *locationManager;
+}
+
 
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _modelArray = [[NSMutableArray alloc] initWithCapacity:15];
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager requestWhenInUseAuthorization];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
+    [locationManager startUpdatingLocation];
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    [self getPhotos];
     
     // Do any additional setup after loading the view.
 }
 
-- (void) getPhotos {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSString *image = @"avat.jpg";
+    GeoModel *model = [[GeoModel alloc] initWithImageName:image];
+    [_modelArray addObject:model];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        [locationManager stopUpdatingLocation];
+        NSString *lat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        NSString *longlat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        [self getPhotos:lat longlat:longlat];
+    }
+}
+
+- (void) getPhotos:(NSString *)lat longlat:(NSString *)longlat {
     [_modelArray removeAllObjects];
-    _modelArray = [[NSMutableArray alloc]init];
-    VKRequest *req = [VKRequest requestWithMethod:@"photos.search" parameters:@{@"lat": @"60", @"long": @"60", @"radius": @"5000"}];
+    //_modelArray = [[NSMutableArray alloc]init];
+    
+    VKRequest *req = [VKRequest requestWithMethod:@"photos.search" parameters:@{@"lat": lat, @"long": longlat, @"radius": @"1000"}];
     [req executeWithResultBlock:^(VKResponse *response){
         NSInteger count;
-        if ([[response.json valueForKey:@"count"] integerValue]<15) {
+        if ([[response.json valueForKey:@"count"] integerValue]<10) {
             count = [[response.json valueForKey:@"count"] integerValue];
         }
         else {
-            count = 15;
+            count = 10;
         }
         for (int i=0; i<count; i++) {
-            NSString *imageName = [[[response.json valueForKey:@"items"]objectAtIndex:i] valueForKey:@"photo_75"];
+            NSString *imageName = [[[response.json valueForKey:@"items"]objectAtIndex:i] valueForKey:@"photo_604"];
             GeoModel *model = [[GeoModel alloc] initWithImageName: imageName];
             [_modelArray addObject:model];
         }
