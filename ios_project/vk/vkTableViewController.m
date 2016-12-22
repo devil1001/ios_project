@@ -13,10 +13,9 @@
 #import <VKSdk.h>
 #import "userModel.h"
 #import <Realm/Realm.h>
-@interface DialogHistory : RLMObject
-@property NSData *dialogHistory;
-@property NSString *user;
-@end
+#import "ViewController.h"
+
+
 
 @interface DialogsBase : RLMObject
 @property NSString *message;
@@ -31,13 +30,11 @@
     return @"id";
 }
 @end
-@implementation DialogHistory
-+ (NSString *) primaryKey {
-    return @"user";
-}
-@end
 
-@interface vkTableViewController ()
+
+static NSArray *SCOPE = nil;
+
+@interface vkTableViewController () <UIAlertViewDelegate, VKSdkUIDelegate>
 {
     NSMutableArray *_modelArray;
     NSMutableArray *_userArray;
@@ -51,10 +48,56 @@
 
 @implementation vkTableViewController
 
+- (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError {
+    VKCaptchaViewController *vc = [VKCaptchaViewController captchaControllerWithError:captchaError];
+    [vc presentIn:self.navigationController.topViewController];
+}
+
+
+- (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult *)result {
+    if (result.token) {
+        [self startWorking];
+    } else if (result.error) {
+        //
+    }
+}
+
+- (void)startWorking {
+    VKRequest *req = [[VKApi users] get];
+    [req executeWithResultBlock:^(VKResponse *response) {
+        NSString *yourId = [[response.json firstObject] valueForKey:@"id"];
+        self.yourId = yourId;
+        [self downloadFromRealm];
+        [self setupModel];
+    }
+                     errorBlock:^(NSError *error){
+                         NSLog(@"%@", error);
+                     }];
+}
+
+- (void)vkSdkUserAuthorizationFailed {
+    //
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)vkSdkShouldPresentViewController:(UIViewController *)controller {
+    [self.navigationController.topViewController presentViewController:controller animated:YES completion:nil];
+}
+
 - (void)viewDidLoad {
+    SCOPE = @[VK_PER_FRIENDS, VK_PER_WALL, VK_PER_AUDIO, VK_PER_PHOTOS, VK_PER_NOHTTPS, VK_PER_EMAIL, VK_PER_MESSAGES];
     [super viewDidLoad];
-    [self downloadFromRealm];
-    [self setupModel];
+    [[VKSdk initializeWithAppId:@"5715415"] registerDelegate:self];
+    [[VKSdk instance] setUiDelegate:self];
+    [VKSdk wakeUpSession:SCOPE completeBlock:^(VKAuthorizationState state, NSError *error) {
+        if (state != VKAuthorizationAuthorized) {
+            //UIStoryboard *storyBoard = [self storyboard];
+            //ViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"login"];
+            [self.navigationController performSegueWithIdentifier:@"login" sender:self];
+            //[self.navigationController ]
+        }
+        [self startWorking];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -64,15 +64,7 @@ static NSArray *SCOPE = nil;
     [VKSdk authorize:SCOPE];
 }
 
-- (IBAction)openShareDialog:(id)sender {
-    VKShareDialogController *shareDialog = [VKShareDialogController new];
-    shareDialog.text = @"This post created created created created and made and post and delivered using #vksdk #ios";
-    shareDialog.uploadImages = @[ [VKUploadImage uploadImageWithImage:[UIImage imageNamed:@"apple"] andParams:[VKImageParameters jpegImageWithQuality:1.0] ] ];
-    [shareDialog setCompletionHandler:^(VKShareDialogController *dialog, VKShareDialogControllerResult result) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    [self presentViewController:shareDialog animated:YES completion:nil];
-}
+
 
 
 - (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError {

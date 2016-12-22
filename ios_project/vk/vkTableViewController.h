@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <VKSdk.h>
 
 
-@interface vkTableViewController : UITableViewController
+@interface vkTableViewController : UITableViewController <VKSdkDelegate>
 @property (strong,nonatomic) NSString *yourId;
 
 @end

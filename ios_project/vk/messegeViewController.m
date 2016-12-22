@@ -10,6 +10,19 @@
 #import "messegeModel.h"
 #import "vkMessegeCell.h"
 #import <VKSdk.h>
+#import <Realm/Realm.h>
+
+@interface DialogHistory : RLMObject
+@property NSString *message;
+@property NSInteger id;
+@property NSString *time;
+@end
+
+@implementation DialogHistory
++ (NSString *) primaryKey {
+    return @"user";
+}
+@end
 
 @interface messegeViewController () <UITableViewDelegate, UITableViewDataSource>
 {
