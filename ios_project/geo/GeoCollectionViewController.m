@@ -65,7 +65,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [_modelArray removeAllObjects];
     //_modelArray = [[NSMutableArray alloc]init];
     
-    VKRequest *req = [VKRequest requestWithMethod:@"photos.search" parameters:@{@"lat": lat, @"long": longlat, @"radius": @"1000"}];
+    VKRequest *req = [VKRequest requestWithMethod:@"photos.search" parameters:@{@"lat": lat, @"long": longlat, @"radius": @"5000"}];
     [req executeWithResultBlock:^(VKResponse *response){
         NSInteger count;
         if ([[response.json valueForKey:@"count"] integerValue]<10) {
