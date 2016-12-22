@@ -23,6 +23,7 @@
 @property NSString *photoName;
 @property NSString *name;
 @property NSString *time;
+@property BOOL isChat;
 @end
 
 @implementation DialogsBase
@@ -93,7 +94,7 @@ static NSArray *SCOPE = nil;
         if (state != VKAuthorizationAuthorized) {
             //UIStoryboard *storyBoard = [self storyboard];
             //ViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"login"];
-            [self.navigationController performSegueWithIdentifier:@"login" sender:self];
+            [self performSegueWithIdentifier:@"login" sender:self];
             //[self.navigationController ]
         }
         [self startWorking];
@@ -183,6 +184,7 @@ static NSArray *SCOPE = nil;
                     dialogBase.message = [_messageArray objectAtIndex:i];
                     dialogBase.name = name;
                     dialogBase.time = [_timeArray objectAtIndex:i];
+                    dialogBase.isChat = false;
                     RLMRealm *realm = [RLMRealm defaultRealm];
                     [realm beginWriteTransaction];
                     [DialogsBase createOrUpdateInRealm:realm withValue:dialogBase];
@@ -199,6 +201,7 @@ static NSArray *SCOPE = nil;
                     dialogBase.message = [_messageArray objectAtIndex:i];
                     dialogBase.time = [_timeArray objectAtIndex:i];
                     dialogBase.name = name;
+                    dialogBase.isChat = true;
                     RLMRealm *realm = [RLMRealm defaultRealm];
                     [realm beginWriteTransaction];
                     [DialogsBase createOrUpdateInRealm:realm withValue:dialogBase];

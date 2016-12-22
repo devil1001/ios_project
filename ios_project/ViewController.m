@@ -1,11 +1,3 @@
-//
-//  ViewController.m
-//  ios_project
-//
-//  Created by devil1001 on 22.10.16.
-//  Copyright © 2016 devil1001. All rights reserved.
-//
-
 #import "ViewController.h"
 #import "vkTableViewController.h"
 
@@ -34,18 +26,7 @@ static NSArray *SCOPE = nil;
 }
 
 - (void)startWorking {
-    VKRequest *req = [[VKApi users] get];
-    [req executeWithResultBlock:^(VKResponse *response) {
-        NSString *yourId = [[response.json firstObject] valueForKey:@"id"];
-        UIStoryboard *storyBoard = [self storyboard];
-        vkTableViewController *vkDialogView = [storyBoard instantiateViewControllerWithIdentifier:@"vkDIalogsVIew"];
-        vkDialogView.yourId = yourId;
-        [self.navigationController pushViewController:vkDialogView animated:true];
-        //[self performSegueWithIdentifier:NEXT_CONTROLLER_SEGUE_ID sender:self];
-    }
-                     errorBlock:^(NSError *error){
-                         NSLog(@"%@", error);
-                     }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +45,15 @@ static NSArray *SCOPE = nil;
     [VKSdk authorize:SCOPE];
 }
 
-
+- (IBAction)openShareDialog:(id)sender {
+    VKShareDialogController *shareDialog = [VKShareDialogController new];
+    shareDialog.text = @"This post created created created created and made and post and delivered using #vksdk #ios";
+    shareDialog.uploadImages = @[ [VKUploadImage uploadImageWithImage:[UIImage imageNamed:@"apple"] andParams:[VKImageParameters jpegImageWithQuality:1.0] ] ];
+    [shareDialog setCompletionHandler:^(VKShareDialogController *dialog, VKShareDialogControllerResult result) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [self presentViewController:shareDialog animated:YES completion:nil];
+}
 
 
 - (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError {

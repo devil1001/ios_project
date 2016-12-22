@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[ViewController authorize:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "SCOPE">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__35-[vkTableViewController getDialogs]_block_invoke_2:vkTableViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -28,6 +36,9 @@
                value = "_userArray">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__49-[GeoCollectionViewController getPhotos:longlat:]_block_invoke:GeoCollectionViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

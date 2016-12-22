@@ -16,11 +16,12 @@
 @property NSString *message;
 @property NSInteger id;
 @property NSString *time;
+@property NSInteger sender;
 @end
 
 @implementation DialogHistory
 + (NSString *) primaryKey {
-    return @"user";
+    return @"id";
 }
 @end
 
@@ -56,7 +57,7 @@
 }
 
 - (void)setupModel{
-    //_modelArray = [[NSMutableArray alloc] init];
+    [self loadFromRealm];
     [self loadMessages];
    // [self sendingPhoto];
 
@@ -65,53 +66,55 @@
 - (void) loadMessages{
     [_modelArray removeAllObjects];
     _modelArray = [[NSMutableArray alloc] init];
+    NSString *chat_id;
     if (self.isChat) {
         NSInteger iden = [self.userID integerValue] + 2000000000;
-        NSString *chat_id = [NSString stringWithFormat:@"%ld", iden];
-        VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" ,  VK_API_USER_ID:chat_id}];
-        [req executeWithResultBlock:^(VKResponse *response){
-            NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
-            if (dialogsCount>=20){
-                dialogsCount = 20;
-            }
-            for (int i = 0; i<dialogsCount; i++) {
-                NSString *message = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"body"]];
-                NSString *sender = [NSString stringWithFormat:@"%@", [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"from_id"]];
-                messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
-                [_modelArray addObject:model];
-            }
-            [_tableViewMessege reloadData];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
-            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
-        }
-                         errorBlock:^(NSError *errorWithName) {
-                             NSLog(@"Error: %@", errorWithName);
-                         }
-         ];
+        chat_id = [NSString stringWithFormat:@"%ld", iden];
     }
     else {
-        VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" , VK_API_USER_ID:self.userID}];
-        [req executeWithResultBlock:^(VKResponse *response){
-            NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
-            if (dialogsCount>=20){
-                dialogsCount = 20;
-            }
-            for (int i = 0; i<dialogsCount; i++) {
-                NSString *message = [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"body"];
-                NSString *sender = [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"from_id"];
-                messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
-                [_modelArray addObject:model];
-            }
-            [_tableViewMessege reloadData];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
-            [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
-            
-        }
-                         errorBlock:^(NSError *errorWithName) {
-                             NSLog(@"Error: %@", errorWithName);
-                         }
-         ];
+        chat_id = self.userID;
     }
+    VKRequest *req = [VKRequest requestWithMethod:@"messages.getHistory" parameters:@{VK_API_COUNT : @"20" ,  VK_API_USER_ID:chat_id}];
+    [req executeWithResultBlock:^(VKResponse *response){
+        DialogHistory *dialogHistory = [[DialogHistory alloc] init];
+        NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
+        if (dialogsCount>=20){
+            dialogsCount = 20;
+        }
+        for (int i = 0; i<dialogsCount; i++) {
+            NSString *message = [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"body"];
+            NSString *sender = [[[response.json valueForKey:@"items" ] objectAtIndex:dialogsCount-i-1] valueForKey:@"from_id"];
+            NSString *time = [[[response.json valueForKey:@"items"] objectAtIndex:dialogsCount-i-1] valueForKey:@"date"];
+            messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
+            [_modelArray addObject:model];
+            dialogHistory.message = message;
+            dialogHistory.id = [sender integerValue];
+            dialogHistory.time = time;
+        }
+        [_tableViewMessege reloadData];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_modelArray.count-1 inSection:0];
+        [_tableViewMessege scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:false];
+    }
+                     errorBlock:^(NSError *errorWithName) {
+                         NSLog(@"Error: %@", errorWithName);
+                     }
+     ];
+}
+
+
+- (void) loadFromRealm{
+    [_modelArray removeAllObjects];
+    _modelArray = [[NSMutableArray alloc] init];
+    RLMResults *result = [[DialogHistory allObjects] sortedResultsUsingProperty:@"time" ascending:NO];
+    NSUInteger count = [result count];
+    for (int i = 0; i<count; i++) {
+        NSString *sender = [[result objectAtIndex:i] valueForKey:@"id"];
+        NSString *message = [[result objectAtIndex:i] valueForKey:@"message"];
+        messegeModel *model = [[messegeModel alloc] initMessege:message sender:sender];
+        [_modelArray addObject:model];
+    }
+    [_tableViewMessege reloadData];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableViewMessege numberOfRowsInSection:(NSInteger)section {
