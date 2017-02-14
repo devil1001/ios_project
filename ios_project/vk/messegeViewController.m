@@ -78,6 +78,7 @@
     [req executeWithResultBlock:^(VKResponse *response){
         DialogHistory *dialogHistory = [[DialogHistory alloc] init];
         NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
+        dialogsCount = [(NSArray *)[response.json valueForKey:@"items"] count];
         if (dialogsCount>=20){
             dialogsCount = 20;
         }

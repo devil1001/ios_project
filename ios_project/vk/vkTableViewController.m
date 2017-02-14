@@ -127,7 +127,7 @@ static NSArray *SCOPE = nil;
         _userArray = [[NSMutableArray alloc] init];
         _chatArray = [[NSMutableArray alloc] init];
         _timeArray = [[NSMutableArray alloc] init];
-        NSInteger dialogsCount = [[response.json valueForKey:@"count"] integerValue];
+        NSInteger dialogsCount = [(NSArray *)[response.json valueForKey:@"items"] count]; //[[response.json valueForKey:@"count"] integerValue];
         if (dialogsCount>=15) {
             dialogsCount = 15;
         }
